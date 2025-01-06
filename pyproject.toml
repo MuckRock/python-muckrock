@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "python-muckrock" 
+version = "1.0.0"
+authors = [
+  { name="duckduckgrayduck", email="sanjin@muckrock.com" },
+]
+description = "A simple Python wrapper for the MuckRock API"
+readme = "README.md"
+requires-python = ">=3.7,<=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests",
+    "ratelimit",
+    "urllib3"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/MuckRock/python-muckrock"
+"Bug Tracker" = "https://github.com/MuckRock/python-muckrock/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/muckrock"]
