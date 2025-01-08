@@ -17,7 +17,7 @@ class Communication(BaseAPIObject):
     api_path = "communications"
 
     def __str__(self):
-        return f"Communication {self.id} - Subject: {self.subject}"
+        return f"Communication {self.id}"
 
 
 class CommunicationClient(BaseAPIClient):

@@ -9,6 +9,9 @@ from .requests import RequestClient
 from .jurisdictions import JurisdictionClient
 from .agencies import AgencyClient
 from .communications import CommunicationClient
+from .files import FileClient
+from .organizations import OrganizationClient
+from .users import UserClient
 
 logger = logging.getLogger("muckrock")
 
@@ -21,8 +24,8 @@ class MuckRock(SquareletClient):
         self,
         username=None,
         password=None,
-        base_uri="https://muckrock-staging.herokuapp.com/api_v2/", # Change to https://www.muckrock.com/api_v2/ when live
-        auth_uri="https://squarelet-staging.herokuapp.com/api/", # Change to https://accounts.muckrock.com/api/ when live
+        base_uri="https://www.muckrock.com/api_v2/",
+        auth_uri="https://accounts.muckrock.com/api/",
         timeout=20,
         loglevel=None,
         rate_limit=True,
@@ -52,3 +55,6 @@ class MuckRock(SquareletClient):
         self.jurisdictions = JurisdictionClient(self)
         self.agencies = AgencyClient(self)
         self.communications = CommunicationClient(self)
+        self.files = FileClient(self)
+        self.organizations = OrganizationClient(self)
+        self.users = UserClient(self)
