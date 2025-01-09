@@ -6,7 +6,7 @@ Users
 import logging
 
 # Local
-from .base import BaseAPIClient, BaseAPIObject
+from .base import BaseAPIClient, BaseAPIObject, APIResults
 
 logger = logging.getLogger("users")
 

@@ -24,8 +24,8 @@ class MuckRock(SquareletClient):
         self,
         username=None,
         password=None,
-        base_uri="https://www.muckrock.com/api_v2/",
-        auth_uri="https://accounts.muckrock.com/api/",
+        base_uri="https://www.muckrock.com/api_v2/", # https://muckrock-staging.herokuapp.com/api_v2/
+        auth_uri="https://accounts.muckrock.com/api/", # https://squarelet-staging.herokuapp.com/api/
         timeout=20,
         loglevel=None,
         rate_limit=True,
