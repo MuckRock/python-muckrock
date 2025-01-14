@@ -74,11 +74,14 @@ class RequestClient(BaseAPIClient):
                 f"{self.api_path}/#post-object-form", json=payload
             )
             response.raise_for_status()
-            print(response.text)
             create_json = response.json()
             obj_list.extend(create_json)
             logger.debug("Object list after processing: %s", obj_list)
+
+            if "location" in create_json:
+                full_url = f"https://www.muckrock.com{create_json['location']}"
+                print(full_url)
+                return full_url
         except APIError as exc:
             logger.error("Error creating requests: %s", str(exc))
             raise
-        return Request(self.client, create_json)
