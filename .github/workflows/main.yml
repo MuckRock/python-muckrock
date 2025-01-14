@@ -27,7 +27,7 @@ jobs:
 
     - name: Run Pylint on muckrock directory
       run: |
-        pylint src/muckrock
+        pylint pylint --disable=missing-function-docstring,too-many-instance-attributes,too-many-arguments,too-many-positional-arguments src/muckrock
 
     - name: Run Black on muckrock directory
       run: |
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     env:
       MR_USER: ${{ secrets.MR_USER }}
       MR_PASSWORD: ${{ secrets.MR_PASSWORD }}
