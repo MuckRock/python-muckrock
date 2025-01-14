@@ -6,7 +6,7 @@ Organizations
 import logging
 
 # Local
-from .base import BaseAPIClient, BaseAPIObject, APIResults
+from .base import APIResults, BaseAPIClient, BaseAPIObject
 
 logger = logging.getLogger("organizations")
 
@@ -17,7 +17,7 @@ class Organization(BaseAPIObject):
     api_path = "organizations"
 
     def __str__(self):
-        return f"Organization {self.id} - Name: {self.name}"
+        return f"Organization {self.id} - Name: {self.name}"  # pylint:disable=no-member
 
 
 class OrganizationClient(BaseAPIClient):

@@ -6,7 +6,7 @@ Users
 import logging
 
 # Local
-from .base import BaseAPIClient, BaseAPIObject, APIResults
+from .base import APIResults, BaseAPIClient, BaseAPIObject
 
 logger = logging.getLogger("users")
 
@@ -17,7 +17,7 @@ class User(BaseAPIObject):
     api_path = "users"
 
     def __str__(self):
-        return f"User {self.id} - Username: {self.username}, Email: {self.email}"
+        return f"User {self.id} - Username: {self.username}, Email: {self.email}"  # pylint:disable=no-member
 
 
 class UserClient(BaseAPIClient):

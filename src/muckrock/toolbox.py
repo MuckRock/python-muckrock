@@ -6,10 +6,11 @@ A few toys the API will use.
 from itertools import zip_longest
 from urllib.parse import urlparse
 
+from urllib3.util.retry import Retry
+
 # Third Party
 import requests
 from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
 
 def requests_retry_session(
@@ -41,7 +42,7 @@ def get_id(id_):
 
     if isinstance(id_, int):
         return id_
-    elif "-" in id_:
+    if "-" in id_:
         front = id_.split("-", 1)[0]
         if front.isdigit():
             return front

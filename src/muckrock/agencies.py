@@ -1,8 +1,10 @@
+""" Access agencies endpoint on MuckRock APIv2 """
+
 # Standard Library
 import logging
 
 # Local
-from .base import BaseAPIObject, BaseAPIClient, APIResults
+from .base import APIResults, BaseAPIClient, BaseAPIObject
 
 logger = logging.getLogger("muckrock")
 
@@ -13,7 +15,7 @@ class Agency(BaseAPIObject):
     api_path = "agencies"
 
     def __str__(self):
-        return self.name
+        return self.name  # pylint:disable=no-member
 
 
 class AgencyClient(BaseAPIClient):

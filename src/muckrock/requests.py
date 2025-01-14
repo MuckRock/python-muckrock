@@ -17,7 +17,7 @@ class Request(BaseAPIObject):
     api_path = "requests"
 
     def __str__(self):
-        return self.title
+        return self.title  # pylint:disable = no-member
 
 
 class RequestClient(BaseAPIClient):
@@ -77,11 +77,9 @@ class RequestClient(BaseAPIClient):
             create_json = response.json()
             obj_list.extend(create_json)
             logger.debug("Object list after processing: %s", obj_list)
-
-            if "location" in create_json:
-                full_url = f"https://www.muckrock.com{create_json['location']}"
-                print(full_url)
-                return full_url
+            full_url = f"https://www.muckrock.com{create_json['location']}"
+            print(full_url)
+            return full_url
         except APIError as exc:
             logger.error("Error creating requests: %s", str(exc))
             raise

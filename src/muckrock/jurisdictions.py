@@ -2,7 +2,7 @@
 
 import logging
 
-from .base import BaseAPIClient, BaseAPIObject, APIResults
+from .base import APIResults, BaseAPIClient, BaseAPIObject
 
 logger = logging.getLogger("muckrock")
 
@@ -13,7 +13,7 @@ class Jurisdiction(BaseAPIObject):
     api_path = "jurisdictions"
 
     def __str__(self):
-        return self.name
+        return self.name  # pylint:disable=no-member
 
 
 class JurisdictionClient(BaseAPIClient):
@@ -47,5 +47,7 @@ class JurisdictionClient(BaseAPIClient):
             response = self.client.get(f"{self.api_path}/{jurisdiction_id}/")
             return Jurisdiction(self.client, response.json())
         except Exception as e:
-            logger.error("Error retrieving jurisdiction with ID %s: %s", jurisdiction_id, e)
+            logger.error(
+                "Error retrieving jurisdiction with ID %s: %s", jurisdiction_id, e
+            )
             raise

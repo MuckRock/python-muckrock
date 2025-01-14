@@ -6,7 +6,7 @@ Files
 import logging
 
 # Local
-from .base import BaseAPIClient, BaseAPIObject, APIResults
+from .base import APIResults, BaseAPIClient, BaseAPIObject
 
 logger = logging.getLogger("files")
 
@@ -17,7 +17,7 @@ class File(BaseAPIObject):
     api_path = "files"
 
     def __str__(self):
-        return f"File {self.id} - Title: {self.title}"
+        return f"File {self.id} - Title: {self.title}"  # pylint:disable=no-member
 
 
 class FileClient(BaseAPIClient):

@@ -6,7 +6,7 @@ Communications management for the Python-MuckRock library.
 import logging
 
 # Local
-from .base import BaseAPIClient, BaseAPIObject, APIResults
+from .base import APIResults, BaseAPIClient, BaseAPIObject
 
 logger = logging.getLogger("communications")
 
@@ -17,7 +17,7 @@ class Communication(BaseAPIObject):
     api_path = "communications"
 
     def __str__(self):
-        return f"Communication {self.id}"
+        return f"Communication {self.id}"  # pylint:disable=no-member
 
 
 class CommunicationClient(BaseAPIClient):

@@ -1,3 +1,5 @@
+""" Some base classes for MuckRock APIv2 """
+
 # Standard Library
 from copy import copy
 
@@ -9,7 +11,8 @@ from .exceptions import DuplicateObjectError
 from .toolbox import get_id, merge_dicts
 
 
-class APIResults(object):
+# pylint:disable=no-member
+class APIResults:
     """Class for encapsulating paginated list results from the API"""
 
     def __init__(
@@ -43,7 +46,7 @@ class APIResults(object):
         length = len(self.results)
         if key < length:
             return self.results[key]
-        elif self.next_url:
+        if self.next_url:
             return self.next[key - length]
         raise IndexError
 
@@ -66,8 +69,7 @@ class APIResults(object):
                 next_=next_,
                 previous=previous,
             )
-        else:
-            return None
+        return None
 
     @property
     def next(self):
@@ -82,7 +84,7 @@ class APIResults(object):
         return self._previous
 
 
-class BaseAPIClient(object):
+class BaseAPIClient:
     """Base client for all API resources"""
 
     # subclasses should set these
@@ -136,7 +138,7 @@ class ChildAPIClient(BaseAPIClient):
         return self.list()[key]
 
 
-class BaseAPIObject(object):
+class BaseAPIObject:
     """Base object for all API resources"""
 
     date_fields = []
@@ -166,6 +168,8 @@ class BaseAPIObject(object):
 
 
 class APISet(list):
+    """Expands on list to offer api sets"""
+
     def __init__(self, iterable, resource):
         super().__init__(iterable)
         self.resource = resource
