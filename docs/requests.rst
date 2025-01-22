@@ -7,7 +7,8 @@ RequestClient
 ----------------
 .. class:: documentcloud.requests.RequestClient
 
-  The request client allows access to search, list, create, and retrieve FOIA requests.
+  The request client allows access to search, list, create, and retrieve FOIA requests. Accessed generally as ``client.agencies``. 
+  Refer to the getting started page to look at some examples of searching and filing for requests. 
 
   .. method:: list(self, **params)
 
@@ -20,6 +21,7 @@ RequestClient
     - **agency**: Filter by the agency ID handling the request.
     - **tags**: Filter by tags associated with the request.
     - **jurisdiction**: Filter by the jurisdiction ID associated with the request.
+    - **search**: An optional search term. For example, you can search for any request that mentions recipes. 
 
     Ordering options are available, including:
 

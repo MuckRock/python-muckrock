@@ -7,7 +7,16 @@ JurisdictionClient
 ----------------
 .. class:: documentcloud.jurisdictions.JurisdictionClient
 
-  The jurisdiction client allows access to search, list, and retrieve individual jurisdictions.
+  The jurisdiction client allows access to search, list, and retrieve individual jurisdictions. Accessed generally as ``client.jurisdictions``. 
+  ::
+
+    >>> jurisdiction_list = client.jurisdictions.list(level='s')
+    >>> jurisdiction_list
+      <APIResults: [<Jurisdiction: 1 - Massachusetts>, <Jurisdiction: 13 - Maine>, <Jurisdiction: 16 - New York>, <Jurisdiction: 34 - Florida>, <Jurisdiction: 47 - District of Columbia>, <Jurisdiction: 52 - California>, <Jurisdiction: 53 - Connecticut>, <Jurisdiction: 54 - Washington>, <Jurisdiction: 78 - Arizona>, <Jurisdiction: 80 - Vermont>, <Jurisdiction: 81 - New Hampshire>, <Jurisdiction: 82 - Rhode Island>, <Jurisdiction: 109 - Texas>, <Jurisdiction: 111 - Kansas>, <Jurisdiction: 114 - Arkansas>, <Jurisdiction: 116 - Ohio>, <Jurisdiction: 117 - Michigan>, <Jurisdiction: 126 - Pennsylvania>, <Jurisdiction: 127 - Colorado>, <Jurisdiction: 128 - Virginia>, <Jurisdiction: 146 - Wisconsin>, <Jurisdiction: 147 - Kentucky>, <Jurisdiction: 152 - Indiana>, <Jurisdiction: 153 - North Carolina>, <Jurisdiction: 154 - Maryland>, <Jurisdiction: 155 - Tennessee>, <Jurisdiction: 156 - Minnesota>, <Jurisdiction: 157 - Montana>, <Jurisdiction: 158 - Oregon>, <Jurisdiction: 159 - Alabama>, <Jurisdiction: 168 - Illinois>, <Jurisdiction: 227 - New Mexico>, <Jurisdiction: 228 - Idaho>, <Jurisdiction: 229 - New Jersey>, <Jurisdiction: 230 - Georgia>, <Jurisdiction: 231 - Mississippi>, <Jurisdiction: 232 - North Dakota>, <Jurisdiction: 233 - Louisiana>, <Jurisdiction: 234 - Utah>, <Jurisdiction: 235 - Alaska>, <Jurisdiction: 236 - Delaware>, <Jurisdiction: 246 - Iowa>, <Jurisdiction: 247 - Hawaii>, <Jurisdiction: 248 - Oklahoma>, <Jurisdiction: 299 - Missouri>, <Jurisdiction: 300 - Nebraska>, <Jurisdiction: 301 - Nevada>, <Jurisdiction: 302 - South Carolina>, <Jurisdiction: 303 - South Dakota>, <Jurisdiction: 304 - West Virginia>]>
+
+    >>> kentucky = client.jurisdictions.retrieve(147)
+    >>> kentucky.abbrev 
+      'KY'
 
   .. method:: list(self, **params)
 

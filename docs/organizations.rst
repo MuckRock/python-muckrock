@@ -8,6 +8,7 @@ OrganizationClient
 .. class:: documentcloud.organizations.OrganizationClient
 
   The organization client allows access to search, list, and retrieve individual organizations.
+  Accessed generally as ``client.organizations``. 
 
   .. method:: list(self, **params)
 

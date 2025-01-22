@@ -8,7 +8,7 @@ AgencyClient
 
 .. class:: muckrock.agencies.AgencyClient
 
-   The agency client allows access to search and retrieval of agencies via the MuckRock API. The client supports querying, listing, and retrieving specific agencies. Accessed generally as ``clients.agencies``.
+   The agency client allows access to search and retrieval of agencies via the MuckRock API. The client supports querying, listing, and retrieving specific agencies. Accessed generally as ``client.agencies``.
    ::
     >>> example_agency = client.agencies.retrieve(453)
     >>> example_agency

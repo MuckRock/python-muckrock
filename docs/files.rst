@@ -7,7 +7,15 @@ FileClient
 ----------------
 .. class:: documentcloud.files.FileClient
 
-  The file client allows access to search, list, and retrieve individual FOIA files. 
+  The file client allows access to search, list, and retrieve individual FOIA files. Accessed generally as ``client.files``. 
+  ::
+    >>> file_list = client.files.list(communication=108907)
+    >>> file_list
+      <APIResults: [<File: 30713 - File 30713 - Title: ~WRD000>]>
+
+    >>> file_retrieved = client.files.retrieve(30713)
+    >>> file_retrieved.ffile 
+      'https://cdn.muckrock.com/foia_files/WRD000_244.jpg'
 
   .. method:: list(self, **params)
 
