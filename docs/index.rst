@@ -19,15 +19,16 @@ Documentation
    :maxdepth: 2
 
    gettingstarted
+   jurisdictions
    agencies
+   requests
    communications
    files
-   jurisdictions
+   users
    organizations
-   requests
    changelog
    credits
-   users
+   
 
 Contributing
 ------------
