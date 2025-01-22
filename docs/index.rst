@@ -27,6 +27,7 @@ Documentation
    requests
    changelog
    credits
+   users
 
 Contributing
 ------------
