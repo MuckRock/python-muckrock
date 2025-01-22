@@ -134,15 +134,13 @@ We can find communications and files (to download them for example) tied to a re
 We can then loop through each communication to see which ones have attached files. We can append the file IDs to a list for easier access later. :: 
 
     >>> file_ids = []
+    >>> for communication in comms_list:
+            # Check if the communication has files
+            if communication.files:
+                # Append the file IDs to the file_ids list
+                file_ids.extend(communication.files)
 
-    # Iterate through each communication in the list
-    for communication in comms_list:
-        # Check if the communication has files
-        if communication.files:
-            # Append the file IDs to the file_ids list
-            file_ids.extend(communication.files)
-
-    print(file_ids)
+    >>> print(file_ids)
     >>> [30713, 30784, 31777, 32802, 32803, 35050, 35051, 36933, 36934, 38807, 38808, 45602, 48352, 51338, 54365, 66321, 71173, 74419, 77104, 84246, 87396, 94028, 96561, 100048, 103091, 105814, 109429, 113222, 116546, 121632, 127366, 131921, 136311, 140504, 152006, 155724, 911255, 912763, 917387, 917386, 917385, 917384, 920439, 1150693, 1150694]
 
 
