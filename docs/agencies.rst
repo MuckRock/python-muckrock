@@ -21,8 +21,9 @@ AgencyClient
   .. method:: retrieve(self, agency_id)
 
     Retrieve a specific agency by its unique identifier.
+
     :param agency_id: The unique ID of the agency to retrieve.
-    :return: An :class:`Agency` object representing the requested agency.
+    :return: A :class:`Agency` object representing the requested agency.
 
 
 Agency

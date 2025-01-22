@@ -10,11 +10,13 @@ UserClient
   The user client allows access to search, list, and retrieve individual users.  
 
   .. method:: me(self)
+
     Retrieve the currently authenticated user.
 
     :return: A :class:`User` object representing the authenticated user.
 
   .. method:: list(self, **params)
+
     List all users with optional filtering. Available filters include:
 
     - **id**: Filter by the unique identifier of the user.
@@ -27,7 +29,9 @@ UserClient
     :return: An :class:`APIResults` object containing the list of users.
 
   .. method:: retrieve(self, user_id)
+
     Retrieve a specific user by their ID
+
     :param user_id: The unique ID of the user to retrieve.
     :return: A :class:`User` object representing the requested user.
 
@@ -35,31 +39,41 @@ UserClient
 User
 ----------------
 .. class:: documentcloud.users.User
+
   A representation of a single user.
 
   .. method:: str()
+
     Return a string representation of the user in format: `User {id} - Username: {username}, Email: {email}`.
 
   .. attribute:: id
+
     The unique numerical identifier for the user.
 
   .. attribute:: username
+
     The unique username of the user.
 
   .. attribute:: email
+
     The email address of the user.
 
   .. attribute:: last_login
+
     The date and time when the user last logged in.
 
   .. attribute:: date_joined
+
     The date and time when the user joined.
 
   .. attribute:: full_name
+
     The full name of the user.
 
   .. attribute:: uuid
+
     The unique identifier for the user's profile (UUID format).
 
   .. attribute:: organizations
+
     A list of organization IDs the user belongs to.

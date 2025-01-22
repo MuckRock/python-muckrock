@@ -10,6 +10,7 @@ FileClient
   The file client allows access to search, list, and retrieve individual FOIA files. 
 
   .. method:: list(self, **params)
+
     List all FOIA files with optional filtering. Available filters include:
 
     - **communication**: Filter by the associated communication's ID.
@@ -33,28 +34,37 @@ File
   A representation of a single FOIA file.
 
   .. method:: str()
+
     Returns a string representation of the file in the format: `File {id} - Title: {title}`.
 
   .. attribute:: id
+
     The unique identifier for the file.
 
   .. attribute:: ffile
+
     The URL of the file.
 
   .. attribute:: datetime
+
     The date and time when the file was uploaded.
 
   .. attribute:: title
+
     The title of the file.
 
   .. attribute:: source
+
     The source of the file (e.g., the agency or department).
 
   .. attribute:: description
+
     A description of the file.
 
   .. attribute:: doc_id
+
     Filter by the document identifier assigned to the file.
 
   .. attribute:: pages
+
     The number of pages in the file.

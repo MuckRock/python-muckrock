@@ -6,9 +6,11 @@ Methods for searching, retrieving, and creating FOIA requests.
 RequestClient
 ----------------
 .. class:: documentcloud.requests.RequestClient
+
   The request client allows access to search, list, create, and retrieve FOIA requests.
 
   .. method:: list(self, **params)
+
     List all FOIA requests with optional filtering and ordering. Available filters include:
 
     - **user**: Filter by the user ID of the person who filed the request.
@@ -34,12 +36,14 @@ RequestClient
     :return: An :class:`APIResults` object containing the list of FOIA requests.
 
   .. method:: retrieve(self, request_id)
+
     Retrieve a specific FOIA request by its unique numerical identifier (ID).
 
     :param request_id: The unique ID of the FOIA request to retrieve.
     :return: A :class:`Request` object representing the requested FOIA request.
 
   .. method:: create(self, title, requested_docs, organization, agencies, embargo_status="public", **kwargs)
+
     Create a new FOIA request.
 
     :param title: The title of the FOIA request. (Required)
@@ -55,24 +59,31 @@ RequestClient
 Request
 ----------------
 .. class:: documentcloud.requests.Request
+
   A representation of a single FOIA request.
 
   .. method:: str()
+
     Return a string representation of the FOIA request, which is the request title.
 
   .. attribute:: id
+
     The unique identifier for this FOIA request.
 
   .. attribute:: title
+
     The title of the FOIA request.
 
   .. attribute:: requested_docs
+
     A description of the documents being requested.
 
   .. attribute:: slug
+
     The slug (URL identifier) for the FOIA request.
 
   .. attribute:: status
+
     The current status of the FOIA request, represented as one of these values:
 
     - "submitted" - Processing
@@ -89,9 +100,11 @@ Request
     - "abandoned" - Withdrawn
 
   .. attribute:: agency
+
     The ID of the agency that the request was submitted to.
 
   .. attribute:: embargo_status
+
     The embargo status of the request, indicating its visibility. Options include:
   
     - "public" - Public
@@ -99,25 +112,33 @@ Request
     - "permanent" - Permanent Embargo (only available to paid organizational members)
 
   .. attribute:: user
+
     The user ID of the person who filed this request.
 
   .. attribute:: edit_collaborators
+
     A list of user IDs who have been given edit access to this request.
 
   .. attribute:: read_collaborators
+
     A list of user IDs who have been given view access to this request.
 
   .. attribute:: datetime_submitted
+
     The timestamp of when this request was submitted.
 
   .. attribute:: datetime_updated
+
     The date and time when the request was last updated.
 
   .. attribute:: datetime_done
+
     The date and time when the request was completed, if applicable.
 
   .. attribute:: tracking_id
+
     The tracking ID assigned to this request by the agency.
 
   .. attribute:: price
+
     The cost of processing this request, if applicable.
