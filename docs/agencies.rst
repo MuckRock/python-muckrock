@@ -12,7 +12,7 @@ AgencyClient
 
   .. method:: list(self, **params)
 
-    List all agencies with optional filtering by parameters. Filters include:
+     List all agencies with optional filtering by parameters. Filters include:
       - name: The agency name. Partial matches are supported.
       - jurisdiction: the ID of the Jurisidiction the agency belongs to. 
     :param params: Query parameters to filter results (e.g., `jurisdiction`, `name`).

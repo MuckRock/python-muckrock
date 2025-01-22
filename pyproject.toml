@@ -25,6 +25,7 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/MuckRock/python-muckrock"
 "Bug Tracker" = "https://github.com/MuckRock/python-muckrock/issues"
+"Documentation" ="https://python-muckrock.readthedocs.io/en/latest/"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/muckrock"]
