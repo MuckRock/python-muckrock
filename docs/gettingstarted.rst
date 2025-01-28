@@ -13,19 +13,19 @@ Provided that you have `pip <http://pypi.python.org/pypi/pip>`_ installed, you c
 Creating a client
 -----------------
 
-Before you can interact with DocumentCloud, you first must import the library and initialize a client to talk with the site on your behalf. ::
+Before you can interact with MuckRock, you first must import the library and initialize a client to talk with the site on your behalf. ::
 
     >>> from muckrock import MuckRock
     >>> client = MuckRock(USERNAME, PASSWORD)
 
-You can also specify a custom uri if you have installed your own version of DocumentCloud ::
+You can also specify a custom uri if you have installed your own version of MuckRock ::
 
-    >>> client = DocumentCloud(USERNAME, PASSWORD, base_uri="https://your.documentcloud.domain/api/", auth_uri="https://your.account.server.domain/api/")
+    >>> client = MuckRock(USERNAME, PASSWORD, base_uri="https://your.documentcloud.domain/api/", auth_uri="https://your.account.server.domain/api/")
 
 If you need to debug, you can pass a logging level as a parameter to the client when you instantiate. You will need to import logging first. There are several `logging levels <https://docs.python.org/3/library/logging.html#logging-levels>`_ depending on your needs. For this example, we will use the DEBUG level. ::
 
     >>> import logging
-    >>> client = DocumentCloud(USERNAME, PASSWORD, loglevel=logging.DEBUG)
+    >>> client = MuckRock(USERNAME, PASSWORD, loglevel=logging.DEBUG)
 
 Searching for requests
 -----------------------
@@ -36,9 +36,9 @@ You can now you use the client to interact with the MuckRock API. A search for r
     >>> request_list
     <APIResults: [<Request: 62755 - 2014 Black Bear Recipe Guide development documents>, <Request: 48151 - CIA recipes and cookbooks>, <Request: 33761 - CIA's Pseudo-Marijuana Recipe>, <Request: 109529 - Food recipe request (San Francisco Fire Department)>, <Request: 21691 - UConn’s Bacon Jalapeño Macaroni and Cheese Recipe>]>
 
-The response will be a set of requests with each request labelled with its ID (62755 for example), then the request title. 
+The response will be a set of requests with each request labelled with its ID (62755 for example), then the request title. The results are paginated, so if there are more than 25 results returned, you can use `.next` and `.previous` to traverse the results. You may view the next 25 results like so 
 
-The results are paginated, so if there are more than 25 results returned, you can use .next and .previous to traverse the results. You may view the next 25 results like so: ::
+::
     >>> request_list.next 
 
 
