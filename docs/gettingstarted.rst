@@ -36,9 +36,8 @@ You can now you use the client to interact with the MuckRock API. A search for r
     >>> request_list
     <APIResults: [<Request: 62755 - 2014 Black Bear Recipe Guide development documents>, <Request: 48151 - CIA recipes and cookbooks>, <Request: 33761 - CIA's Pseudo-Marijuana Recipe>, <Request: 109529 - Food recipe request (San Francisco Fire Department)>, <Request: 21691 - UConn’s Bacon Jalapeño Macaroni and Cheese Recipe>]>
 
-The response will be a set of requests with each request labelled with its ID (62755 for example), then the request title. The results are paginated, so if there are more than 25 results returned, you can use `.next` and `.previous` to traverse the results. You may view the next 25 results like so 
+The response will be a set of requests with each request labelled with its ID (62755 for example), then the request title. The results are paginated, so if there are more than 25 results returned, you can use `.next` and `.previous` to traverse the results. You may view the next 25 results like so: ::
 
-::
     >>> request_list.next 
 
 
