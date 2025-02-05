@@ -120,7 +120,7 @@ You may still edit or delete the request before it is filed (30 minutes after cr
 Finding communications and files tied to a request
 -----------------------
 
-We can find communications and files (to download them for example) tied to a request by first retrieving the request and then using the FOIA object's `get_communications()` method.
+We can find communications and files (to download them for example) tied to a request by first retrieving the request and then using the request object's `get_communications()` method.
 
 :: 
 
@@ -143,7 +143,7 @@ We can then see if any communication has a file by accessing the communication o
     >>> [<File: 30713 - File 30713 - Title: ~WRD000>, <File: 30784 - File 30784 - Title: ~WRD345>, <File: 31777 - File 31777 - Title: Interim Response>, <File: 32802 - File 32802 - Title: ~WRD098>, <File: 32803 - File 32803 - Title: FDPS Online Status>, <File: 35050 - File 35050 - Title: FDPS Online Status>, <File: 35051 - File 35051 - Title: ~WRD283>, <File: 36933 - File 36933 - Title: ~WRD098>, <File: 36934 - File 36934 - Title: FDPS Online Status>, <File: 38807 - File 38807 - Title: FDPS Online Status>, <File: 38808 - File 38808 - Title: ~WRD376>, <File: 45602 - File 45602 - Title: ~WRD000>, <File: 48352 - File 48352 - Title: ~WRD048>,...]
 
 
-Now that we have the file IDs for the request we can access the link to each file using the files endpoint. :: 
+Now that we have each file we can easily retrieve the link to each file :: 
 
     >>> for file in all_files:
     ...     print(file.ffile)
