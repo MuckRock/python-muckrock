@@ -27,7 +27,7 @@ class Communication(BaseAPIObject):
         """
         return self._client.files.list(
             communication=self.id # pylint:disable=no-member
-        )  
+        )
 
 
 class CommunicationClient(BaseAPIClient):

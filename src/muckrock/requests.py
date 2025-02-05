@@ -27,7 +27,7 @@ class Request(BaseAPIObject):
         """
         return self._client.communications.list(
             foia=self.id # pylint:disable=no-member
-        )  
+        )
 
 
 class RequestClient(BaseAPIClient):
