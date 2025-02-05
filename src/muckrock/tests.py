@@ -3,8 +3,9 @@
 import os
 
 import pytest
-from muckrock import MuckRock
 from squarelet.exceptions import DoesNotExistError
+from muckrock import MuckRock
+
 
 
 # pylint:disable=redefined-outer-name

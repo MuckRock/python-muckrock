@@ -26,8 +26,8 @@ class Request(BaseAPIObject):
         :return: APIResults containing Communication objects.
         """
         return self._client.communications.list(
-            foia=self.id
-        )  # pylint:disable=no-member
+            foia=self.id # pylint:disable=no-member
+        )  
 
 
 class RequestClient(BaseAPIClient):

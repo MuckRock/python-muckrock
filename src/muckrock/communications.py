@@ -26,8 +26,8 @@ class Communication(BaseAPIObject):
         :return: APIResults containing Foiafile objects.
         """
         return self._client.files.list(
-            communication=self.id
-        )  # pylint:disable=no-member
+            communication=self.id # pylint:disable=no-member
+        )  
 
 
 class CommunicationClient(BaseAPIClient):
