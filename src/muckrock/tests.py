@@ -3,8 +3,9 @@
 import os
 
 import pytest
-from squarelet.exceptions import DoesNotExistError
 from muckrock import MuckRock
+from squarelet.exceptions import DoesNotExistError
+
 
 # pylint:disable=redefined-outer-name
 @pytest.fixture

@@ -19,6 +19,16 @@ class Communication(BaseAPIObject):
     def __str__(self):
         return f"Communication {self.id}"  # pylint:disable=no-member
 
+    def get_files(self):
+        """
+        Retrieve all files related to this FOIA communication.
+
+        :return: APIResults containing Foiafile objects.
+        """
+        return self._client.files.list(
+            communication=self.id
+        )  # pylint:disable=no-member
+
 
 class CommunicationClient(BaseAPIClient):
     """Client for interacting with FOIA communications."""

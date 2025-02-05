@@ -68,6 +68,14 @@ Request
 
     Return a string representation of the FOIA request, which is the request title.
 
+  .. method:: get_communications(self)
+
+    Retrieve all communications associated with this FOIA request.
+
+    This method fetches all communications related to the specific FOIA request. If no communications are found, it returns an empty :class:`APIResults` object.
+
+    :return: An :class:`APIResults` object containing the list of communications.
+
   .. attribute:: id
 
     The unique identifier for this FOIA request.

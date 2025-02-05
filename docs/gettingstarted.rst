@@ -120,39 +120,37 @@ You may still edit or delete the request before it is filed (30 minutes after cr
 Finding communications and files tied to a request
 -----------------------
 
-We can find communications and files (to download them for example) tied to a request in two steps once we have the request ID. First, we query communications by the request ID to grab the communications for the request in question. If there are more than 25 communications on a request you will have to use .next to grab the next page of communications.
+We can find communications and files (to download them for example) tied to a request by first retrieving the request and then using the FOIA object's `get_communications()` method.
 
 :: 
 
-    >>> >>> comms_list = client.communications.list(foia=14313)
+    >>> request = client.requests.retrieve(14313)
+    >>> comms_list = request.get_communications()
     >>> comms_list
     <APIResults: [<Communication: 108835 - Communication 108835>, <Communication: 108843 - Communication 108843>, <Communication: 108907 - Communication 108907>, <Communication: 108966 - Communication 108966>, <Communication: 111795 - Communication 111795>, <Communication: 116217 - Communication 116217>, <Communication: 117300 - Communication 117300>, <Communication: 125824 - Communication 125824>, <Communication: 126598 - Communication 126598>, <Communication: 132173 - Communication 132173>, <Communication: 132516 - Communication 132516>, <Communication: 137925 - Communication 137925>, <Communication: 138088 - Communication 138088>, <Communication: 145537 - Communication 145537>, <Communication: 152476 - Communication 152476>, <Communication: 152664 - Communication 152664>, <Communication: 160437 - Communication 160437>, <Communication: 160672 - Communication 160672>, <Communication: 168785 - Communication 168785>, <Communication: 169623 - Communication 169623>, <Communication: 178866 - Communication 178866>, <Communication: 179077 - Communication 179077>, <Communication: 191560 - Communication 191560>, <Communication: 201224 - Communication 201224>, <Communication: 209319 - Communication 209319>, <Communication: 210054 - Communication 210054>, <Communication: 217196 - Communication 217196>, <Communication: 217378 - Communication 217378>, <Communication: 224981 - Communication 224981>, <Communication: 225368 - Communication 225368>, <Communication: 232374 - Communication 232374>, <Communication: 232639 - Communication 232639>, <Communication: 240709 - Communication 240709>, <Communication: 240818 - Communication 240818>, <Communication: 249100 - Communication 249100>, <Communication: 250002 - Communication 250002>, <Communication: 257558 - Communication 257558>, <Communication: 258751 - Communication 258751>, <Communication: 266697 - Communication 266697>, <Communication: 267332 - Communication 267332>, <Communication: 277200 - Communication 277200>, <Communication: 277719 - Communication 277719>, <Communication: 285848 - Communication 285848>, <Communication: 285988 - Communication 285988>, <Communication: 294296 - Communication 294296>, <Communication: 294402 - Communication 294402>, <Communication: 304474 - Communication 304474>, <Communication: 304853 - Communication 304853>, <Communication: 314973 - Communication 314973>, <Communication: 315197 - Communication 315197>]>
    
 
 
-We can then loop through each communication to see which ones have attached files. We can append the file IDs to a list for easier access later. :: 
+We can then see if any communication has a file by accessing the communication object's `get_files()` method :: 
 
-    >>> file_ids = []
-    >>> for communication in comms_list:
-            # Check if the communication has files
-            if communication.files:
-                # Append the file IDs to the file_ids list
-                file_ids.extend(communication.files)
+    >>> all_files = []
+    >>> for comm in comms_list:
+            files = list(comm.get_files())
+            if files: # Filters out comms with no actual files
+                all_files.extend(files)
 
-    >>> print(file_ids)
-    >>> [30713, 30784, 31777, 32802, 32803, 35050, 35051, 36933, 36934, 38807, 38808, 45602, 48352, 51338, 54365, 66321, 71173, 74419, 77104, 84246, 87396, 94028, 96561, 100048, 103091, 105814, 109429, 113222, 116546, 121632, 127366, 131921, 136311, 140504, 152006, 155724, 911255, 912763, 917387, 917386, 917385, 917384, 920439, 1150693, 1150694]
+    >>> print(all_files)
+    >>> [<File: 30713 - File 30713 - Title: ~WRD000>, <File: 30784 - File 30784 - Title: ~WRD345>, <File: 31777 - File 31777 - Title: Interim Response>, <File: 32802 - File 32802 - Title: ~WRD098>, <File: 32803 - File 32803 - Title: FDPS Online Status>, <File: 35050 - File 35050 - Title: FDPS Online Status>, <File: 35051 - File 35051 - Title: ~WRD283>, <File: 36933 - File 36933 - Title: ~WRD098>, <File: 36934 - File 36934 - Title: FDPS Online Status>, <File: 38807 - File 38807 - Title: FDPS Online Status>, <File: 38808 - File 38808 - Title: ~WRD376>, <File: 45602 - File 45602 - Title: ~WRD000>, <File: 48352 - File 48352 - Title: ~WRD048>,...]
 
 
 Now that we have the file IDs for the request we can access the link to each file using the files endpoint. :: 
 
+    >>> for file in all_files:
+    ...     print(file.ffile)
 
-    >>> for file_id in file_ids:
-            file_obj = client.files.retrieve(file_id)
-            print(file_obj.ffile)
-    >>>       
     https://cdn.muckrock.com/foia_files/WRD000_244.jpg
     https://cdn.muckrock.com/foia_files/WRD345.jpg
     https://cdn.muckrock.com/foia_files/12-2-14_MR14313_INT_ID1313992-000.pdf
-    ... 
     https://cdn.muckrock.com/foia_files/2024/02/01/20-00038-FR.pdf
     https://cdn.muckrock.com/foia_files/2024/02/01/REFERRAL_DETERMINATION.docx
+    etc

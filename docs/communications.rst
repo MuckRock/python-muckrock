@@ -33,6 +33,7 @@ CommunicationClient
     :param communication_id: The unique ID of the communication to retrieve.
     :return: A :class:`Communication` object representing the requested communication.
 
+
 Communication
 ----------------
 .. class:: documentcloud.communications.Communication
@@ -42,6 +43,15 @@ Communication
   .. method:: str()
 
     Returns a string representation of the communication in the format: `Communication {id}`.
+
+  .. method:: get_files(self)
+
+    Retrieve all files associated with this FOIA communication.
+
+    This method fetches any documents or attachments linked to the communication. 
+    If no files are associated, it returns an empty :class:`APIResults` object.
+
+    :return: An :class:`APIResults` object containing the list of files.
 
   .. attribute:: id
 
