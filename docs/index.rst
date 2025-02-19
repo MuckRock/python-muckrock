@@ -28,6 +28,7 @@ Documentation
    organizations
    changelog
    credits
+   projects
    
 
 Contributing
