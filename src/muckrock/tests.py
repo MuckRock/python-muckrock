@@ -171,3 +171,16 @@ def test_retrieve_users_nonstaff(regular_user_client):
     user_id = 1
     with pytest.raises(DoesNotExistError):
         regular_user_client.users.retrieve(user_id)
+
+
+def test_list_projects(muckrock_client):
+    projects = muckrock_client.projects.list()
+    assert projects, "Expected a non-empty list of communications."
+    print(projects)
+
+
+def test_retrieve_projects(muckrock_client):
+    project_id = 10
+    project = muckrock_client.projects.retrieve(project_id)
+    assert project.id == project_id, f"Expected request ID to be {project_id}."
+    print(project)

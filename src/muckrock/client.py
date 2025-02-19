@@ -11,6 +11,7 @@ from .communications import CommunicationClient
 from .files import FileClient
 from .jurisdictions import JurisdictionClient
 from .organizations import OrganizationClient
+from .projects import ProjectClient
 # Local Imports
 from .requests import RequestClient
 from .users import UserClient
@@ -62,3 +63,4 @@ class MuckRock(SquareletClient):
         self.files = FileClient(self)
         self.organizations = OrganizationClient(self)
         self.users = UserClient(self)
+        self.projects = ProjectClient(self)
