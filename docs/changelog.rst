@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+2.1.0
+~~~~~
+
+* Adds support for the projects endpoint. 
+
 2.0.0
 ~~~~~
 
