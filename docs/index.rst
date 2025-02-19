@@ -26,10 +26,10 @@ Documentation
    files
    users
    organizations
+   projects
    changelog
    credits
-   projects
-   
+
 
 Contributing
 ------------
