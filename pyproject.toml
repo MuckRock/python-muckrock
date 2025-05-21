@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "python-muckrock" 
-version = "2.1.0"
+version = "2.2.0"
 authors = [
   { name="duckduckgrayduck", email="sanjin@muckrock.com" },
 ]
@@ -19,7 +19,8 @@ classifiers = [
 dependencies = [
     "requests",
     "ratelimit",
-    "urllib3"
+    "urllib3",
+    "python-squarelet"
 ]
 
 [project.urls]

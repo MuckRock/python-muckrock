@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+2.2.0
+~~~~~
+
+* Adds python-squarelet as a build dependency. 
+
 2.1.0
 ~~~~~
 
