@@ -5,7 +5,7 @@ Methods for searching and retrieving files attached to FOIA communications.
 
 FileClient
 ----------------
-.. class:: documentcloud.files.FileClient
+.. class:: muckrock.files.FileClient
 
   The file client allows access to search, list, and retrieve individual FOIA files. Accessed generally as ``client.files``. 
   ::
@@ -37,7 +37,7 @@ FileClient
 
 File
 ----------------
-.. class:: documentcloud.files.File
+.. class:: muckrock.files.File
 
   A representation of a single FOIA file.
 
