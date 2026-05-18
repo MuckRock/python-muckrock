@@ -5,7 +5,7 @@ Methods for searching, retrieving, and creating FOIA requests.
 
 RequestClient
 ----------------
-.. class:: documentcloud.requests.RequestClient
+.. class:: muckrock.requests.RequestClient
 
   The request client allows access to search, list, create, and retrieve FOIA requests. Accessed generally as ``client.agencies``. 
   Refer to the getting started page to look at some examples of searching and filing requests. 
@@ -60,7 +60,7 @@ RequestClient
 
 Request
 ----------------
-.. class:: documentcloud.requests.Request
+.. class:: muckrock.requests.Request
 
   A representation of a single FOIA request.
 

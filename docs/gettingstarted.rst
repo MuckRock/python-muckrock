@@ -20,7 +20,7 @@ Before you can interact with MuckRock, you first must import the library and ini
 
 You can also specify a custom uri if you have installed your own version of MuckRock ::
 
-    >>> client = MuckRock(USERNAME, PASSWORD, base_uri="https://your.documentcloud.domain/api/", auth_uri="https://your.account.server.domain/api/")
+    >>> client = MuckRock(USERNAME, PASSWORD, base_uri="https://your.muckrock.domain/api/", auth_uri="https://your.account.server.domain/api/")
 
 If you need to debug, you can pass a logging level as a parameter to the client when you instantiate. You will need to import logging first. There are several `logging levels <https://docs.python.org/3/library/logging.html#logging-levels>`_ depending on your needs. For this example, we will use the DEBUG level. ::
 

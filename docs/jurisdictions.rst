@@ -5,7 +5,7 @@ Methods for searching and retrieving jurisdictions.
 
 JurisdictionClient
 ----------------
-.. class:: documentcloud.jurisdictions.JurisdictionClient
+.. class:: muckrock.jurisdictions.JurisdictionClient
 
   The jurisdiction client allows access to search, list, and retrieve individual jurisdictions. Accessed generally as ``client.jurisdictions``. 
   ::
@@ -39,7 +39,7 @@ JurisdictionClient
 
 Jurisdiction
 ----------------
-.. class:: documentcloud.jurisdictions.Jurisdiction
+.. class:: muckrock.jurisdictions.Jurisdiction
 
   A representation of a jurisdiction. 
 
