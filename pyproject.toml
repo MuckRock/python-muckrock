@@ -3,14 +3,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "python-muckrock" 
+name = "python-muckrock"
 version = "2.2.0"
 authors = [
   { name="duckduckgrayduck", email="sanjin@muckrock.com" },
 ]
 description = "A simple Python wrapper for the MuckRock API v2"
 readme = "README.md"
-requires-python = ">=3.7,<=3.12"
+requires-python = ">=3.7,<3.13"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -20,13 +20,22 @@ dependencies = [
     "requests",
     "ratelimit",
     "urllib3",
-    "python-squarelet"
+    "python-squarelet",
+    "token-bucket",
+    "python-dateutil",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pylint",
+    "black",
+    "pytest",
 ]
 
 [project.urls]
 "Homepage" = "https://github.com/MuckRock/python-muckrock"
 "Bug Tracker" = "https://github.com/MuckRock/python-muckrock/issues"
-"Documentation" ="https://python-muckrock.readthedocs.io/en/latest/"
+"Documentation" = "https://python-muckrock.readthedocs.io/en/latest/"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/muckrock"]

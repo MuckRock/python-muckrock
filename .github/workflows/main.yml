@@ -23,8 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint black ratelimit requests urllib3 python-squarelet python_dateutil pytest
-
+        pip install -e ".[dev]"
     - name: Run Pylint on muckrock directory
       run: |
         pylint --disable=missing-function-docstring,too-many-instance-attributes,too-many-arguments,too-many-positional-arguments src/muckrock
@@ -46,7 +45,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
@@ -54,7 +52,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -e ".[dev]"
       - name: Run tests
         run: |
           pytest src/muckrock/tests.py
