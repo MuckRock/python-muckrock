@@ -5,7 +5,7 @@ Methods for searching and retrieving projects.
 
 ProjectClient
 ----------------
-.. class:: documentcloud.projects.ProjectClient
+.. class:: muckrock.projects.ProjectClient
 
 The project client allows access to search, list, and retrieve projects.  Accessed generally as ``client.projects``. 
   ::
@@ -30,7 +30,7 @@ The project client allows access to search, list, and retrieve projects.  Access
 
 Project
 ----------------
-.. class:: documentcloud.projects.Project
+.. class:: muckrock.projects.Project
 
   A representation of a single project.
 

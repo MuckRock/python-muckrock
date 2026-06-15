@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# python-documentcloud documentation build configuration file, created by
+# python-muckrock documentation build configuration file, created by
 # sphinx-quickstart on Sat Mar 15 15:49:29 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "muckrock"
-copyright = "2025, MuckRock Foundation, Inc."
+copyright = "2026, MuckRock Foundation, Inc."
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

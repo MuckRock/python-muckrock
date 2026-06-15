@@ -5,7 +5,7 @@ Methods for searching and retrieving organizations.
 
 OrganizationClient
 ----------------
-.. class:: documentcloud.organizations.OrganizationClient
+.. class:: muckrock.organizations.OrganizationClient
 
   The organization client allows access to search, list, and retrieve individual organizations.
   Accessed generally as ``client.organizations``. 
@@ -31,7 +31,7 @@ OrganizationClient
 
 Organization
 ----------------
-.. class:: documentcloud.organizations.Organization
+.. class:: muckrock.organizations.Organization
 
   A representation of a single organization.
 

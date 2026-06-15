@@ -5,7 +5,7 @@ Methods for searching and retrieving users.
 
 UserClient
 ----------------
-.. class:: documentcloud.users.UserClient
+.. class:: muckrock.users.UserClient
 
   The user client allows access to search, list, and retrieve individual users.  Accessed generally as ``client.users``. 
   ::
@@ -40,7 +40,7 @@ UserClient
 
 User
 ----------------
-.. class:: documentcloud.users.User
+.. class:: muckrock.users.User
 
   A representation of a single user.
 

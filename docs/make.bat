@@ -115,9 +115,9 @@ if "%1" == "qthelp" (
 	echo.
 	echo.Build finished; now you can run "qcollectiongenerator" with the ^
 .qhcp project file in %BUILDDIR%/qthelp, like this:
-	echo.^> qcollectiongenerator %BUILDDIR%\qthelp\python-documentcloud.qhcp
+	echo.^> qcollectiongenerator %BUILDDIR%\qthelp\python-muckrock.qhcp
 	echo.To view the help file:
-	echo.^> assistant -collectionFile %BUILDDIR%\qthelp\python-documentcloud.ghc
+	echo.^> assistant -collectionFile %BUILDDIR%\qthelp\python-muckrock.ghc
 	goto end
 )
 
