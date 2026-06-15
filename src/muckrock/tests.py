@@ -120,29 +120,44 @@ def test_rate_limit_tokens_consumed(client):
     """Tokens should be consumed when making real API calls"""
     # pylint:disable=protected-access
     agencies_limiter = next(
-        lim for p, lim, _ in client._endpoint_limiters if p == "agencies/"
+        lim for p, lim, _ in client._endpoint_limiters if p == "agencies"
     )
     # consume all but one token
     for _ in range(99):
-        agencies_limiter.consume("agencies/")
+        agencies_limiter.consume("agencies")
     # make a real API call - should consume the last token
     client.agencies.list()
     # bucket should now be empty
-    assert not agencies_limiter.consume("agencies/")
+    assert not agencies_limiter.consume("agencies")
 
 
 def test_rate_limit_throttles_after_burst(client):
     """Client should throttle after burst capacity is exhausted"""
     # pylint:disable=protected-access
     agencies_limiter = next(
-        lim for p, lim, _ in client._endpoint_limiters if p == "agencies/"
+        lim for p, lim, _ in client._endpoint_limiters if p == "agencies"
     )
     # exhaust the bucket
     for _ in range(100):
-        agencies_limiter.consume("agencies/")
+        agencies_limiter.consume("agencies")
 
     start = time.time()
     client.agencies.list()  # this should throttle
     elapsed = time.time() - start
     # should have waited for at least one token to refill (1/rate = 4 seconds)
     assert elapsed >= 4
+
+
+def test_rate_limit_tokens_consumed_users(client):
+    """Tokens should be consumed when making real API calls to users endpoint"""
+    # pylint:disable=protected-access
+    users_limiter = next(
+        lim for p, lim, _ in client._endpoint_limiters if p == "users"
+    )
+    # consume all but one token
+    for _ in range(4):
+        users_limiter.consume("users")
+    # make a real API call - should consume the last token
+    client.users.list()
+    # bucket should now be empty
+    assert not users_limiter.consume("users")

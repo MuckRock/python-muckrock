@@ -37,14 +37,14 @@ logger = logging.getLogger("muckrock")
 # organizations/      5/min        5    Heavy rate limit, minimal burst
 # users/              5/min        5    Heavy rate limit, minimal burst
 ENDPOINT_RATE_LIMITS = [
-    ("organizations/", 5 / 60, 5),
-    ("users/", 5 / 60, 5),
-    ("requests/", 15 / 60, 100),
-    ("communications/", 15 / 60, 100),
-    ("agencies/", 15 / 60, 100),
-    ("files/", 15 / 60, 100),
-    ("jurisdictions/", 15 / 60, 100),
-    ("projects/", 15 / 60, 100),
+    ("organizations", 5 / 60, 5),
+    ("users", 5 / 60, 5),
+    ("requests", 15 / 60, 100),
+    ("communications", 15 / 60, 100),
+    ("agencies", 15 / 60, 100),
+    ("files", 15 / 60, 100),
+    ("jurisdictions", 15 / 60, 100),
+    ("projects", 15 / 60, 100),
 ]
 
 
