@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "python-muckrock"
-version = "2.2.0"
+version = "2.3.0"
 authors = [
   { name="duckduckgrayduck", email="sanjin@muckrock.com" },
 ]

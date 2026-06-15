@@ -48,7 +48,7 @@ ENDPOINT_RATE_LIMITS = [
 ]
 
 
-class MuckRock(SquareletClient): # pylint:disable=too-many-instance-attributes
+class MuckRock(SquareletClient):  # pylint:disable=too-many-instance-attributes
     """
     The public interface for the MuckRock API, now integrated with SquareletClient
     """
@@ -105,17 +105,12 @@ class MuckRock(SquareletClient): # pylint:disable=too-many-instance-attributes
         self.users = UserClient(self)
         self.projects = ProjectClient(self)
 
-    def _base_request(
-        self, method, url, raise_error=True, **kwargs
-    ):  # pylint: disable=unused-argument
-        return super().request(method, url, raise_error=raise_error, **kwargs)
-
     def request(self, method, url, raise_error=True, **kwargs):
         for pattern, limiter, bucket_key in self._endpoint_limiters:
             if pattern in url:
-                while not limiter.consume(bucket_key):
-                    time.sleep(0.1)
-                return self._base_request(
-                    method, url, raise_error=raise_error, **kwargs
-                )
+                if not limiter.consume(bucket_key):
+                    logger.warning("Rate limit reached for %s, throttling...", pattern)
+                    while not limiter.consume(bucket_key):
+                        time.sleep(0.1)
+                return super().request(method, url, raise_error=raise_error, **kwargs)
         return super().request(method, url, raise_error=raise_error, **kwargs)
