@@ -2,6 +2,7 @@
 
 # Standard Library
 import os
+import time
 
 # Third Party
 import pytest
@@ -20,11 +21,13 @@ def client():
 
 
 def test_list_agencies(client):
+    """ Test that listing agencies returns a non empty list """
     agencies = client.agencies.list()
     assert agencies, "Expected a non-empty list of agencies."
 
 
 def test_retrieve_agency(client):
+    """ Test that retrieving agency with ID 1 works"""
     agency = client.agencies.retrieve(1)
     assert agency.id == 1
 
@@ -102,6 +105,7 @@ def test_retrieve_project(client):
     project = client.projects.retrieve(10)
     assert project.id == 10
 
+
 def test_create_request(client):
     new_request = client.requests.create(
         title="Test FOIA Request",
@@ -110,3 +114,35 @@ def test_create_request(client):
         agencies=[248],
     )
     assert "test-foia-request" in new_request
+
+
+def test_rate_limit_tokens_consumed(client):
+    """Tokens should be consumed when making real API calls"""
+    # pylint:disable=protected-access
+    agencies_limiter = next(
+        lim for p, lim, _ in client._endpoint_limiters if p == "agencies/"
+    )
+    # consume all but one token
+    for _ in range(99):
+        agencies_limiter.consume("agencies/")
+    # make a real API call - should consume the last token
+    client.agencies.list()
+    # bucket should now be empty
+    assert not agencies_limiter.consume("agencies/")
+
+
+def test_rate_limit_throttles_after_burst(client):
+    """Client should throttle after burst capacity is exhausted"""
+    # pylint:disable=protected-access
+    agencies_limiter = next(
+        lim for p, lim, _ in client._endpoint_limiters if p == "agencies/"
+    )
+    # exhaust the bucket
+    for _ in range(100):
+        agencies_limiter.consume("agencies/")
+
+    start = time.time()
+    client.agencies.list()  # this should throttle
+    elapsed = time.time() - start
+    # should have waited for at least one token to refill (1/rate = 4 seconds)
+    assert elapsed >= 4
