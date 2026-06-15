@@ -1,5 +1,8 @@
 Changelog
 ---------
+2.3.0
+~~~~~
+* Adds sane burst rate limits to endpoints. 
 
 2.2.0
 ~~~~~

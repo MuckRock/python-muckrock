@@ -1,4 +1,0 @@
-pytest==7.4.2
-python_dateutil==2.9.0.post0
-urllib3==1.26.5
-python-squarelet
