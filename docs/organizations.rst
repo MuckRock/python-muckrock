@@ -1,10 +1,10 @@
 Organization
-===========
+============
 
 Methods for searching and retrieving organizations. 
 
 OrganizationClient
-----------------
+------------------
 .. class:: muckrock.organizations.OrganizationClient
 
   The organization client allows access to search, list, and retrieve individual organizations.

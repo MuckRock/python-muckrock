@@ -1,10 +1,10 @@
 Jurisdictions
-===========
+=============
 
 Methods for searching and retrieving jurisdictions. 
 
 JurisdictionClient
-----------------
+------------------
 .. class:: muckrock.jurisdictions.JurisdictionClient
 
   The jurisdiction client allows access to search, list, and retrieve individual jurisdictions. Accessed generally as ``client.jurisdictions``. 

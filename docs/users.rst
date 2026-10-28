@@ -9,6 +9,7 @@ UserClient
 
   The user client allows access to search, list, and retrieve individual users.  Accessed generally as ``client.users``. 
   ::
+
     >>> my_user = client.users.me()
 
   .. method:: me(self)

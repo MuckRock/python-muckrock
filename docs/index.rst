@@ -35,5 +35,5 @@ Contributing
 ------------
 
 * Code repository: `https://github.com/MuckRock/python-muckrock <https://github.com/MuckRock/python-muckrock>`_
-* Issues: `https://github.com/MuckRock/python-muckrock/issues <https://github.com/MuckRock/python-muckrock/issues`_
+* Issues: `https://github.com/MuckRock/python-muckrock/issues <https://github.com/MuckRock/python-muckrock/issues>`_
 * Packaging: `https://pypi.org/project/python-muckrock/ <https://pypi.org/project/python-muckrock/>`_

@@ -42,7 +42,7 @@ The response will be a set of requests with each request labelled with its ID (6
 
 
 Retrieving a single request
------------------------
+---------------------------
 
 Let's say we want to retrieve a single request (like request 62755 from above).. 
 You may retrieve this single request by its ID like so: ::
@@ -53,7 +53,7 @@ You may retrieve this single request by its ID like so: ::
 
 
 Retrieving your organization ID
------------------------
+-------------------------------
 
 To file requests using the API, you need to know which organization to file the requests under. 
 The easiest way to find the organization IDs of organizations you belong to is by accessing the user endpoint. ::
@@ -118,7 +118,7 @@ The only difference between filing a single and multi-request is that you provid
 You may still edit or delete the request before it is filed (30 minutes after creation) on the site.
 
 Finding communications and files tied to a request
------------------------
+---------------------------------------------------
 
 We can find communications and files (to download them for example) tied to a request by first retrieving the request and then using the request object's `get_communications()` method.
 

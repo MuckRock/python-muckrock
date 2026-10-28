@@ -1,10 +1,10 @@
 Communications
-===========
+==============
 
 Methods for searching and retrieving FOIA communications. 
 
 CommunicationClient
-----------------
+-------------------
 .. class:: muckrock.communications.CommunicationClient
 
   The communication client allows access to search, list, and retrieve individual FOIA communications. Accessed generally as ``client.communications``.
