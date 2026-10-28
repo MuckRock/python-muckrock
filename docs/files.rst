@@ -9,6 +9,7 @@ FileClient
 
   The file client allows access to search, list, and retrieve individual FOIA files. Accessed generally as ``client.files``. 
   ::
+
     >>> file_list = client.files.list(communication=108907)
     >>> file_list
       <APIResults: [<File: 30713 - File 30713 - Title: ~WRD000>]>
@@ -23,7 +24,7 @@ FileClient
 
     - **communication**: Filter by the associated communication's ID.
     - **title**: Filter by the file title.
-    - **doc_id**: Filter by unique identifier for the document (different than the ID of the file).
+    - **doc_id**: Filter by the unique slug for the file (different than the ID of the file).
 
     :param params: Query parameters to filter results, such as `communication`, `title`, and `doc_id`.
     :return: An :class:`APIResults` object containing the list of files.
@@ -71,7 +72,7 @@ File
 
   .. attribute:: doc_id
 
-    Filter by the document identifier assigned to the file.
+    The unique slug assigned to the file (different than the ID of the file).
 
   .. attribute:: pages
 

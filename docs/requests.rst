@@ -7,8 +7,14 @@ RequestClient
 ----------------
 .. class:: muckrock.requests.RequestClient
 
-  The request client allows access to search, list, create, and retrieve FOIA requests. Accessed generally as ``client.agencies``. 
+  The request client allows access to search, list, create, and retrieve FOIA requests. Accessed generally as ``client.requests``. 
   Refer to the getting started page to look at some examples of searching and filing requests. 
+
+  To find requests within a date range, use the ``__gte`` (on or after) and ``__lte`` (on or before) filters with dates in ``YYYY-MM-DD`` format. They can be combined with other filters such as ``agency``:
+  ::
+
+    >>> requests_2024 = client.requests.list(datetime_submitted__gte='2024-01-01', datetime_submitted__lte='2024-12-31')
+    >>> agency_requests_2024 = client.requests.list(agency=453, datetime_submitted__gte='2024-01-01', datetime_submitted__lte='2024-12-31')
 
   .. method:: list(self, **params)
 
@@ -21,6 +27,12 @@ RequestClient
     - **agency**: Filter by the agency ID handling the request.
     - **tags**: Filter by tags associated with the request.
     - **jurisdiction**: Filter by the jurisdiction ID associated with the request.
+    - **datetime_submitted__gte**: Requests submitted on or after this date.
+    - **datetime_submitted__lte**: Requests submitted on or before this date.
+    - **datetime_updated__gte**: Requests last updated on or after this date.
+    - **datetime_updated__lte**: Requests last updated on or before this date.
+    - **datetime_done__gte**: Requests where the response was received on or after this date.
+    - **datetime_done__lte**: Requests where the response was received on or before this date.
     - **search**: An optional search term. For example, you can search for any request that mentions recipes. 
 
     Ordering options are available, including:
@@ -34,7 +46,7 @@ RequestClient
 
     Ordering can be specified as either ascending (`ordering=user`) or descending (`ordering=-user`).
 
-    :param params: Query parameters to filter and order results, such as `user`, `title`, `status`, `embargo_status`, `agency`, `tags`, and `jurisdiction`, along with `ordering`.
+    :param params: Query parameters to filter and order results, such as `user`, `title`, `status`, `embargo_status`, `agency`, `tags`, `jurisdiction`, the date range filters, and `search`, along with `ordering`.
     :return: An :class:`APIResults` object containing the list of FOIA requests.
 
   .. method:: retrieve(self, request_id)

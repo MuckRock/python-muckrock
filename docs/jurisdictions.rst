@@ -18,16 +18,23 @@ JurisdictionClient
     >>> kentucky.abbrev 
       'KY'
 
+  To find the local jurisdictions within a state, filter by the state's abbreviation with ``parent__abbrev``:
+  ::
+
+    >>> ma_local_jurisdictions = client.jurisdictions.list(parent__abbrev='MA')
+
   .. method:: list(self, **params)
 
     List all jurisdictions with optional filtering. Available filters include:
 
-    - **abbrev**: Filter by the jurisdiction abbreviation. Local jurisdictions typically don't have an abbreviation.
-    - **level**: Filter by the level of the jurisdiction (e.g., `f` for Federal, `s` for State, `l` for Local).
+    - **abbrev**: Filter by the jurisdiction abbreviation. Local jurisdictions don't have an abbreviation.
+    - **level**: Filter by the level of the jurisdiction (``f`` for Federal, ``s`` for State, ``l`` for Local).
     - **name**: Filter by the jurisdiction's name.
     - **parent**: Filter by the ID of the parent jurisdiction. Jurisdictions can have a federal or state parent, while local jurisdictions cannot be parents.
+    - **parent__name**: Filter by the name of the parent jurisdiction.
+    - **parent__abbrev**: Filter by the abbreviation of the parent jurisdiction. For example, ``MA`` returns the state's local jurisdictions.
 
-    :param params: Query parameters to filter results, such as `abbrev`, `level`, `name`, and `parent`.
+    :param params: Query parameters to filter results, such as `abbrev`, `level`, `name`, `parent`, `parent__name`, and `parent__abbrev`.
     :return: An :class:`APIResults` object containing the list of jurisdictions.
 
   .. method:: retrieve(self, jurisdiction_id)
@@ -66,9 +73,10 @@ Jurisdiction
   .. attribute:: level
 
     The level of the jurisdiction, which can be:
-    - **`f`** for Federal
-    - **`s`** for State
-    - **`l`** for Local
+
+    - ``f`` for Federal
+    - ``s`` for State
+    - ``l`` for Local
 
   .. attribute:: parent
 

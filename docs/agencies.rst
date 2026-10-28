@@ -18,12 +18,28 @@ AgencyClient
     >>> agency_search_example
       <APIResults: [<Agency: 18 - Department of Transitional Assistance>, <Agency: 26 - Office of Consumer Affairs and Business Regulation>, <Agency: 31 - Department of Education>, <Agency: 73 - Massachusetts State Lottery>, <Agency: 118 - Massachusetts Bay Transportation Authority (MBTA)>, <Agency: 123 - State Racing Commission>, <Agency: 131 - Parole Board>, <Agency: 138 - Executive Office of Health and Human Services>, <Agency: 139 - Human Resources Division>, <Agency: 141 - Office of the Comptroller>, <Agency: 146 - Executive Office for Administration and Finance>, <Agency: 154 - Commonwealth Health Insurance Connector Authority>, <Agency: 155 - Division of Insurance>, <Agency: 156 - Office of Medicaid>, <Agency: 159 - Office of Medicaid>, <Agency: 160 - Massachusetts Technology Collaborative>, <Agency: 161 - Executive Office of Housing and Economic Development>, <Agency: 162 - Department of Transportation>, <Agency: 163 - MassDevelopment>, <Agency: 164 - MassDevelopment>, <Agency: 171 - Massachusetts Clean Energy Center>, <Agency: 175 - Department of Revenue>, <Agency: 191 - Elections Division (Secretary of State)>, <Agency: 192 - University of Massachusetts>, <Agency: 193 - University of Massachusetts (Amherst)>, <Agency: 195 - Massachusetts Emergency Management Agency>, <Agency: 196 - University of Massachusetts School of Law>, <Agency: 230 - The Massachusetts Historical Commission>, <Agency: 231 - Department of Youth Services>, <Agency: 257 - Massachusetts Department of Criminal Justice Information Services>, <Agency: 267 - Division of Health Care Finance and Policy>, <Agency: 274 - Massachusetts State Police>, <Agency: 310 - Department of Correction>, <Agency: 330 - Supervisor of Public Records>, <Agency: 331 - Department of Public Safety, Architectural Access Board>, <Agency: 332 - Office of Consumer Affairs and Business Regulation Massachusetts, Consumer Assistance Unit>, <Agency: 410 - Registry of Motor Vehicles>, <Agency: 411 - Massachusetts Commission on Lesbian, Gay, Bisexual, Transgender, Queer and Questioning (LGBTQ) Youth (Commission)>, <Agency: 412 - Department of Children and Families>, <Agency: 432 - Department of Public Safety>, <Agency: 433 - Office of the Governor - Massachusetts>, <Agency: 443 - Inspector General>, <Agency: 452 - Commonwealth Fusion Center>, <Agency: 453 - Executive Office of Public Safety and Security>, <Agency: 480 - Massachusetts Port Authority>, <Agency: 501 - Energy Facilities Siting Board>, <Agency: 508 - Attorney General's Office>, <Agency: 562 - Department of Public Utilities>, <Agency: 651 - Metropolitan Law Enforcement Council (MetroLEC)>, <Agency: 714 - Department of Public Health, Division of Health Care Quality>]>
 
+   To find all agencies in a state, use the ``state`` filter with the ID of a state jurisdiction. Unlike ``jurisdiction__id``, which only matches agencies directly in that jurisdiction, ``state`` also includes local agencies (such as city and county agencies) within the state.
+   ::
+
+    >>> state_agencies = client.agencies.list(state=168)
+
+
+   To search for agencies by keyword, use the ``search`` parameter. It can be combined with other filters such as ``state``.
+   For example, to find all of the police departments in Illinois you could do:
+   ::
+
+    >>> il_police_agencies = client.agencies.list(search="police", state=168)
+
   .. method:: list(self, **params)
 
      List all agencies with optional filtering by parameters. Filters include:
       - name: The agency name. Partial matches are supported.
-      - jurisdiction__id: the ID of the Jurisidiction the agency belongs to. 
-    :param params: Query parameters to filter results (e.g., `jurisdiction`, `name`).
+      - jurisdiction__id: the ID of the Jurisdiction the agency belongs to.
+      - state: The ID of a state jurisdiction. Matches state-level agencies and local agencies within that state.
+      - search: A keyword search across agencies (e.g., ``search="police"``).
+      - type: The agency type name (e.g., ``type="police"``). Not set on every agency. 
+
+    :param params: Query parameters to filter results (e.g., `jurisdiction__id`, `name`, `state`, `search`, `type`).
     :return: An :class:`APIResults` object containing the list of agencies.
 
   .. method:: retrieve(self, agency_id)
@@ -32,6 +48,8 @@ AgencyClient
 
     :param agency_id: The unique ID of the agency to retrieve.
     :return: A :class:`Agency` object representing the requested agency.
+
+
 
 
 Agency
