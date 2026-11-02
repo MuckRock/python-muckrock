@@ -30,7 +30,7 @@ If you need to debug, you can pass a logging level as a parameter to the client 
 Searching for requests
 -----------------------
 
-You can now you use the client to interact with the MuckRock API. A search for requests about recipes would look like this: ::
+You can now use the client to interact with the MuckRock API. A search for requests about recipes would look like this: ::
 
     >>> request_list = client.requests.list(search="Recipe")
     >>> request_list
@@ -44,10 +44,10 @@ The response will be a set of requests with each request labelled with its ID (6
 Retrieving a single request
 ---------------------------
 
-Let's say we want to retrieve a single request (like request 62755 from above).. 
+Let's say we want to retrieve a single request (like request 48151 from above).
 You may retrieve this single request by its ID like so: ::
 
-    >>> request_test = client.requests.retrieve(62755)
+    >>> request_test = client.requests.retrieve(48151)
     >>> request_test
     <Request: 48151 - CIA recipes and cookbooks>
 
@@ -77,13 +77,17 @@ Before you can file a request using the MuckRock API, you need to know where to 
 Similar to the requests endpoint, the agencies endpoint has filters that allow you to find the agencies of interest. 
 You can provide a search term or other filter. Consult the agencies portion of this documentation for more options. 
 
-Here is an example of how to find agencies that belong to jurisdiction 1 (Massachusetts)
+The easiest way to find agencies in a state is with the ``state`` filter. First, look up the state's jurisdiction ID by its abbreviation: ::
 
-::
+    >>> illinois = client.jurisdictions.list(abbrev='IL', level='s')
+    >>> illinois
+    <APIResults: [<Jurisdiction: 168 - Illinois>]>
 
-    >>> agency_list = client.agencies.list(jurisdiction__id=1)
-    >>> agency_list
-    <APIResults: [<Agency: 18 - Department of Transitional Assistance>, <Agency: 26 - Office of Consumer Affairs and Business Regulation>, <Agency: 31 - Department of Education>, <Agency: 73 - Massachusetts State Lottery>, <Agency: 118 - Massachusetts Bay Transportation Authority (MBTA)>, <Agency: 123 - State Racing Commission>, <Agency: 131 - Parole Board>, <Agency: 138 - Executive Office of Health and Human Services>, <Agency: 139 - Human Resources Division>, <Agency: 141 - Office of the Comptroller>, <Agency: 146 - Executive Office for Administration and Finance>, <Agency: 154 - Commonwealth Health Insurance Connector Authority>, <Agency: 155 - Division of Insurance>, <Agency: 156 - Office of Medicaid>, <Agency: 159 - Office of Medicaid>, <Agency: 160 - Massachusetts Technology Collaborative>, <Agency: 161 - Executive Office of Housing and Economic Development>, <Agency: 162 - Department of Transportation>, <Agency: 163 - MassDevelopment>, <Agency: 164 - MassDevelopment>, <Agency: 171 - Massachusetts Clean Energy Center>, <Agency: 175 - Department of Revenue>, <Agency: 191 - Elections Division (Secretary of State)>, <Agency: 192 - University of Massachusetts>, <Agency: 193 - University of Massachusetts (Amherst)>, <Agency: 195 - Massachusetts Emergency Management Agency>, <Agency: 196 - University of Massachusetts School of Law>, <Agency: 230 - The Massachusetts Historical Commission>, <Agency: 231 - Department of Youth Services>, <Agency: 257 - Massachusetts Department of Criminal Justice Information Services>, <Agency: 267 - Division of Health Care Finance and Policy>, <Agency: 274 - Massachusetts State Police>, <Agency: 310 - Department of Correction>, <Agency: 330 - Supervisor of Public Records>, <Agency: 331 - Department of Public Safety, Architectural Access Board>, <Agency: 332 - Office of Consumer Affairs and Business Regulation Massachusetts, Consumer Assistance Unit>, <Agency: 410 - Registry of Motor Vehicles>, <Agency: 411 - Massachusetts Commission on Lesbian, Gay, Bisexual, Transgender, Queer and Questioning (LGBTQ) Youth (Commission)>, <Agency: 412 - Department of Children and Families>, <Agency: 432 - Department of Public Safety>, <Agency: 433 - Office of the Governor - Massachusetts>, <Agency: 443 - Inspector General>, <Agency: 452 - Commonwealth Fusion Center>, <Agency: 453 - Executive Office of Public Safety and Security>, <Agency: 480 - Massachusetts Port Authority>, <Agency: 501 - Energy Facilities Siting Board>, <Agency: 508 - Attorney General's Office>, <Agency: 562 - Department of Public Utilities>, <Agency: 651 - Metropolitan Law Enforcement Council (MetroLEC)>, <Agency: 714 - Department of Public Health, Division of Health Care Quality>]>
+Then pass that ID as ``state``. This returns both state agencies and local agencies (such as city and county agencies) within the state. You can narrow the results with ``type`` or ``search``: ::
+
+    >>> il_agencies = client.agencies.list(state=168)
+    >>> il_police_agencies = client.agencies.list(state=168, type="police")
+    >>> chicago_agencies = client.agencies.list(state=168, search="Chicago")
 
 
 Filing a single request
@@ -109,16 +113,28 @@ The only difference between filing a single and multi-request is that you provid
     >>> new_request_data = {
         "title": "Your request title here",
         "requested_docs": "This is a test FOIA request.",
-        "organization": 1 # Replace this with your org id, 
-        "agencies": [248, 18529]  # Replace this with your list of agencies. 
+        "organization": 1,  # Replace this with your org id.
+        "agencies": [248, 18529],  # Replace this with your list of agencies.
     }
     >>> new_request = client.requests.create(**new_request_data)
     https://www.muckrock.com/foi/multirequest/your-request-title-here-151010/
 
 You may still edit or delete the request before it is filed (30 minutes after creation) on the site.
 
+Running out of requests
+-----------------------
+
+If the organization you file under has no requests remaining, the request is not filed. Instead, it is saved as a draft and the API responds with a ``402 Payment Required`` status and a link to the draft: ::
+
+    {
+        "status": "Out of requests. FOI Request has been saved.",
+        "location": "https://www.muckrock.com/foi/multirequest/your-request-title-here-151010/"
+    }
+
+To file the draft, either add more requests to your organization and submit it from the ``location`` link on the site, or file it under a different organization that has requests remaining. See `Retrieving your organization ID`_ for how to check which organizations you belong to.
+
 Finding communications and files tied to a request
----------------------------------------------------
+--------------------------------------------------
 
 We can find communications and files (to download them for example) tied to a request by first retrieving the request and then using the request object's `get_communications()` method.
 

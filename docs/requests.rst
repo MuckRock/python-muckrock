@@ -18,7 +18,7 @@ RequestClient
 
   .. method:: list(self, **params)
 
-    List all FOIA requests with optional filtering and ordering. Available filters include:
+    List all FOIA requests with optional filtering. Available filters include:
 
     - **user**: Filter by the user ID of the person who filed the request.
     - **title**: Filter by the title of the request.
@@ -35,18 +35,7 @@ RequestClient
     - **datetime_done__lte**: Requests where the response was received on or before this date.
     - **search**: An optional search term. For example, you can search for any request that mentions recipes. 
 
-    Ordering options are available, including:
-
-    - **title**: Sort by the request title.
-    - **status**: Sort by the request status.
-    - **agency**: Sort by the agency handling the request.
-    - **user**: Sort by the user who filed the request.
-    - **datetime_submitted**: Sort by the date the request was submitted.
-    - **datetime_done**: Sort by the date the request was completed.
-
-    Ordering can be specified as either ascending (`ordering=user`) or descending (`ordering=-user`).
-
-    :param params: Query parameters to filter and order results, such as `user`, `title`, `status`, `embargo_status`, `agency`, `tags`, `jurisdiction`, the date range filters, and `search`, along with `ordering`.
+    :param params: Query parameters to filter results, such as `user`, `title`, `status`, `embargo_status`, `agency`, `tags`, `jurisdiction`, the date range filters, and `search`.
     :return: An :class:`APIResults` object containing the list of FOIA requests.
 
   .. method:: retrieve(self, request_id)
