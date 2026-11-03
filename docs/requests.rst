@@ -51,9 +51,10 @@ RequestClient
 
     :param title: The title of the FOIA request. (Required)
     :param requested_docs: A description of the documents being requested. (Required)
-    :param organization: The ID of the organization requesting the FOIA documents.
+    :param organization: The ID of the organization requesting the FOIA documents. (Required)
     :param agencies: A list of agency IDs involved in the request. (Required)
-    :param embargo_status: The embargo status of the request (default is "public").
+    :param embargo_status: The embargo status of the request (default is "public"). Embargoing requires a paid subscription. 
+    :param edited_boilerplate: If ``True``, ``requested_docs`` is used as the full text of the request instead of being inserted into MuckRock's standard request template (default is ``False``). Passed through ``kwargs``. Note that this also skips the proxy template language included for agencies in states with in-state residency requirements.
     :param kwargs: Additional parameters to be included in the request.
     :return: A URL linking to the newly created FOIA request(s).
     :raises: ValueError if `agencies` is not a non-empty list.
@@ -114,6 +115,10 @@ Request
 
     The ID of the agency that the request was submitted to.
 
+  .. attribute:: composer
+
+    The ID of the composer that created this request. Requests filed together in a multi-request share the same composer.
+
   .. attribute:: embargo_status
 
     The embargo status of the request, indicating its visibility. Options include:
@@ -153,3 +158,15 @@ Request
   .. attribute:: price
 
     The cost of processing this request, if applicable.
+
+  .. attribute:: tags
+
+    A list of tags associated with this request.
+
+  .. attribute:: edited_boilerplate
+
+    A boolean indicating whether ``requested_docs`` was used as the full text of the request instead of MuckRock's standard request template.
+
+  .. attribute:: date_due
+
+    The date a response from the agency is due, based on the statutory deadline for the request's jurisdiction.

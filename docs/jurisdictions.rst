@@ -81,3 +81,11 @@ Jurisdiction
   .. attribute:: parent
 
     The ID of the parent jurisdiction, defining the hierarchy between jurisdictions. A jurisdiction can have a federal or state parent, while local jurisdictions cannot be parents.
+
+  .. attribute:: parent_name
+
+    The name of the parent jurisdiction (e.g., ``United States of America``).
+
+  .. attribute:: parent_abbrev
+
+    The abbreviation of the parent jurisdiction (e.g., ``USA``).
