@@ -8,7 +8,6 @@ ProjectClient
 .. class:: muckrock.projects.ProjectClient
 
 The project client allows access to search, list, and retrieve projects.  Accessed generally as ``client.projects``. 
-  ::
 
 .. method:: list(self, **params)
 

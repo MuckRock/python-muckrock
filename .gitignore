@@ -12,3 +12,5 @@ dist/*
 *.swp
 .DS_Store
 .env
+.venv/
+docs/_build/

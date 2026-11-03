@@ -1,29 +1,35 @@
 Communications
-===========
+==============
 
 Methods for searching and retrieving FOIA communications. 
 
 CommunicationClient
-----------------
+-------------------
 .. class:: muckrock.communications.CommunicationClient
 
-  The communication client allows access to search, list, and retrieve individual FOIA communications. Accessed generally as ``clients.communications`` 
+  The communication client allows access to search, list, and retrieve individual FOIA communications. Accessed generally as ``client.communications``.
   ::
+
     >>> comms_list = client.communications.list(foia=14313)
     >>> comms_list
       <APIResults: [<Communication: 108835 - Communication 108835>, <Communication: 108843 - Communication 108843>, <Communication: 108907 - Communication 108907>, <Communication: 108966 - Communication 108966>, <Communication: 111795 - Communication 111795>, <Communication: 116217 - Communication 116217>, <Communication: 117300 - Communication 117300>, <Communication: 125824 - Communication 125824>, <Communication: 126598 - Communication 126598>, <Communication: 132173 - Communication 132173>, <Communication: 132516 - Communication 132516>, <Communication: 137925 - Communication 137925>, <Communication: 138088 - Communication 138088>, <Communication: 145537 - Communication 145537>, <Communication: 152476 - Communication 152476>, <Communication: 152664 - Communication 152664>, <Communication: 160437 - Communication 160437>, <Communication: 160672 - Communication 160672>, <Communication: 168785 - Communication 168785>, <Communication: 169623 - Communication 169623>, <Communication: 178866 - Communication 178866>, <Communication: 179077 - Communication 179077>, <Communication: 191560 - Communication 191560>, <Communication: 201224 - Communication 201224>, <Communication: 209319 - Communication 209319>, <Communication: 210054 - Communication 210054>, <Communication: 217196 - Communication 217196>, <Communication: 217378 - Communication 217378>, <Communication: 224981 - Communication 224981>, <Communication: 225368 - Communication 225368>, <Communication: 232374 - Communication 232374>, <Communication: 232639 - Communication 232639>, <Communication: 240709 - Communication 240709>, <Communication: 240818 - Communication 240818>, <Communication: 249100 - Communication 249100>, <Communication: 250002 - Communication 250002>, <Communication: 257558 - Communication 257558>, <Communication: 258751 - Communication 258751>, <Communication: 266697 - Communication 266697>, <Communication: 267332 - Communication 267332>, <Communication: 277200 - Communication 277200>, <Communication: 277719 - Communication 277719>, <Communication: 285848 - Communication 285848>, <Communication: 285988 - Communication 285988>, <Communication: 294296 - Communication 294296>, <Communication: 294402 - Communication 294402>, <Communication: 304474 - Communication 304474>, <Communication: 304853 - Communication 304853>, <Communication: 314973 - Communication 314973>, <Communication: 315197 - Communication 315197>]>
+
+  To find communications within a date range, use ``min_date`` (on or after) and ``max_date`` (on or before) with dates in ``YYYY-MM-DD`` format. They can be combined with other filters such as ``response``:
+  ::
+
+    >>> responses_2024 = client.communications.list(foia=14313, response=True, min_date='2024-01-01', max_date='2024-12-31')
 
   .. method:: list(self, **params)
 
     List all FOIA communications with optional filtering. Available filters include:
 
-    - **max_date**: Filter communications before a specific date. Format: YYYY-MM-DD
-    - **min_date**: Filter communications after a specific date. Format: YYYY-MM-DD
+    - **max_date**: Filter communications on or before this date. Format: YYYY-MM-DD
+    - **min_date**: Filter communications on or after this date. Format: YYYY-MM-DD
     - **foia**: Filter by the associated FOIA request's ID.
-    - **status**: Filter by the status of the communication (e.g., `submitted`, `ack`, `processed`, etc.).
-    - **response**: Filter communications based on whether they are a response (boolean).
+    - **status**: Filter by the status of the communication (e.g., ``submitted``, ``ack``, ``processed``).
+    - **response**: Filter by whether the communication is a response (boolean).
 
-    :param params: Query parameters to filter results (e.g., `foia`, `max_date`, `response`).
+    :param params: Query parameters to filter results (e.g., `foia`, `min_date`, `max_date`, `status`, `response`).
     :return: An :class:`APIResults` object containing the list of communications.
 
   .. method:: retrieve(self, communication_id)
@@ -91,7 +97,7 @@ Communication
 
   .. attribute:: status
 
-    The status of the communication, such as `submitted`, `ack`, `processed`, `done`, etc.
+    The status of the communication, such as ``submitted``, ``ack``, ``processed``, ``done``, etc.
 
   .. attribute:: files
 
