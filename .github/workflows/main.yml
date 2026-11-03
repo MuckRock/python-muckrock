@@ -10,15 +10,15 @@ on:
 
 jobs:
   lint-and-format:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
     - name: Check out repository
       uses: actions/checkout@v3
 
-    - name: Set up Python 3.10.15
+    - name: Set up Python 3.14
       uses: actions/setup-python@v4
       with:
-        python-version: 3.10.15
+        python-version: 3.14
 
     - name: Install dependencies
       run: |
